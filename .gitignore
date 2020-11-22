@@ -4,11 +4,12 @@ __pycache__/
 *$py.class
 
 # NodeJS
-node_modules
+node_modules/
 
 # Environments
 .env
 .venv
+envs/
 env/
 venv/
 ENV/
