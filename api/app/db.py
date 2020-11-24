@@ -20,7 +20,8 @@ def drop_table():
 
 @db_session()
 def get_all_ducks():
-    ducks = list(select("select * from Duck"))
+    ducks = list(Duck.select())
+    return ducks
 
 @db_session()
 def add_duck(time, food, location, number, amount):
