@@ -1,6 +1,7 @@
 import json, falcon
-# import app.db as db
+import app.db as db
 
+db.initialize_db()
 class Resource(object):
     
     def on_get(self, req, resp):
@@ -17,7 +18,11 @@ class DataPage(object):
         location = req.get_param('location')
         number = req.get_param('number')
         amount = req.get_param('amount')
-        resp.status = falcon.HTTP_200
+        addDuck = db.add_duck(time, food, location, number, amount)
+        if addDuck == True:
+            resp.status = falcon.HTTP_200
+        else:
+            resp.status = falcon.HTTP_401
 
     def on_get(self, req, resp): 
         # TODO add viewing data
