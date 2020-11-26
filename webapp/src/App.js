@@ -12,13 +12,39 @@ class App extends Component {
       			food: "",
       			location: "",
       			number: 0,
-		        amount: 0
+		        amount: 0,
+			ducks: []
     		};
-
     		this.handleInputChange = this.handleInputChange.bind(this);
     		this.handleSubmit = this.handleSubmit.bind(this);
+		this.getDucks = this.getDucks.bind(this)
+		this.showDucks = this.showDucks.bind(this)
   	}
 
+        componentDidMount(){
+		this.getDucks();
+	}
+	getDucks() {
+		var dateg = []
+                var myHeaders = new Headers();
+                myHeaders.append('Content-Type', 'application/json')
+                var requestOptions = {
+                        method: 'GET',
+                        headers: myHeaders
+                }
+                fetch("http://localhost:8000/data", requestOptions)
+                        .then(response => response.json())
+                        .then((data) => {
+                                this.setState({ducks: data})
+				console.log(this.state.ducks)
+                        })
+                        .catch(error => console.log('error', error));
+		
+		
+	}
+	showDucks() {	
+		      console.log(this.state.ducks)
+	}
   	handleInputChange(event) {
     		const target = event.target;
     		const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -58,7 +84,8 @@ class App extends Component {
 
   	render() {
     		return (
-      <form onSubmit={this.handleSubmit}>
+    <div>	
+       <form onSubmit={this.handleSubmit}>
         <label>
             Time you fed the duck:
             <input
@@ -106,6 +133,30 @@ class App extends Component {
         </label>
         <input type="submit" value="Submit" />
       </form>
+      <h1>Duck Data</h1>
+         <table>
+	   <tr>
+	     <th>id</th>
+	     <th>Time</th>
+	     <th>Food Type</th>
+	     <th>Location</th>
+	     <th>Number of Ducks</th>
+	     <th>Amount of food</th> 
+	   </tr>
+		{this.state.ducks.map((data, key) => {
+			return (
+				<tr>
+					<th>{data.id}</th>
+					<th>{data.time}</th>
+					<th>{data.food}</th>
+					<th>{data.location}</th>
+					<th>{data.number}</th>
+					<th>{data.amount}</th>
+				</tr>
+			)
+		})}
+	 </table>
+    </div>
     );
   }
 }
