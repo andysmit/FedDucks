@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
+import {Container, Row, Col, Table, Form} from 'react-bootstrap';
 const API_SERVER = 'http://localhost:8000/data'
 
 
@@ -84,57 +85,73 @@ class App extends Component {
 
   	render() {
     		return (
-    <div>	
-       <form onSubmit={this.handleSubmit}>
-        <label>
-            Time you fed the duck:
+    <Container>
+	<Row>
+	<Col md={{span:4, offset:4 }}>
+			  <h1>Enter Duck Data</h1>
+			</Col>
+	</Row>
+	
+	<Row>
+       <Form onSubmit={this.handleSubmit}>
+        <Form.Label>
+            Time you fed the duck(in military time by hour):
             <input
             name="time"
-            type="string"
+            type="number"
             checked={this.state.time}
             onChange={this.handleInputChange} />
-        </label>
+        </Form.Label>
        	<br />
-        <label>
-          Type of the food you fed the duck with
+        <Form.Label>
+          Type of the food you fed the duck with:
           <input
             name="food"
             type="string"
             value={this.state.food}
             onChange={this.handleInputChange} />
-        </label>
+        </Form.Label>
         <br />
-        <label>
-          Location of the duck
+        <Form.Label>
+          Location of the duck:
           <input
             name="location"
             type="string"
             value={this.state.location}
             onChange={this.handleInputChange} />
-        </label>
+        </Form.Label>
         <br />
-        <label>
-          Number of the fed ducks
+        <Form.Label>
+          Number of the fed ducks:
           <input
             name="number"
             type="number"
             value={this.state.number}
             onChange={this.handleInputChange} />
-        </label>
+        </Form.Label>
         <br />
-        <label>
-          Amount of food you fed. In kg
+        <Form.Label>
+          Amount of food you fed(in kg):
           <input
             name="amount"
             type="number"
 	    step="0.1"
             value={this.state.amount}
             onChange={this.handleInputChange} />
-        </label>
+        </Form.Label>
         <input type="submit" value="Submit" />
-      </form>
-      <h1>Duck Data</h1>
-         <table>
+      </Form>
+	</Row>
+
+	<Row>
+		<Col md={{span:4, offset:4 }}>
+      		<h1>Duck Data</h1>
+		</Col>
+	 </Row>
+	
+	<Row>
+         <Table striped bordered hover>
+		<thead>
 	   <tr>
 	     <th>id</th>
 	     <th>Time</th>
@@ -142,7 +159,8 @@ class App extends Component {
 	     <th>Location</th>
 	     <th>Number of Ducks</th>
 	     <th>Amount of food</th> 
-	   </tr>
+	   </tr> </thead>
+		<tbody>
 		{this.state.ducks.map((data, key) => {
 			return (
 				<tr>
@@ -155,8 +173,10 @@ class App extends Component {
 				</tr>
 			)
 		})}
-	 </table>
-    </div>
+		</tbody>
+	 </Table>
+	</Row>
+    </Container>
     );
   }
 }
