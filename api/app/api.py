@@ -30,7 +30,8 @@ class DataPage(object):
             resp.status = falcon.HTTP_401
 
     def on_get(self, req, resp): 
-        # TODO add viewing data
-        ducks = db.get_all_ducks() 
+        ducks = db.get_all_ducks()
+       
         resp.status = falcon.HTTP_200
+        resp.body = json.dumps(ducks)
 

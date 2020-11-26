@@ -1,4 +1,5 @@
-import os
+import os, json
+import pandas as pd
 from pony.orm import *
  
 db = Database() 
@@ -20,8 +21,15 @@ def drop_table():
 
 @db_session()
 def get_all_ducks():
+    #test = pd.read_sql(Duck.select())
+    #test2 = test.to_json()
+    #print(test2)
     ducks = list(Duck.select())
-    return ducks
+    data=[]
+    for duck in ducks:
+    	item = {"id": duck.id, "time": duck.time, "food": duck.food, "location": duck.location, "number": duck.number, "amount": duck.amount}
+    	data.append(item)
+    return data
 
 @db_session()
 def add_duck(time, food, location, number, amount):
