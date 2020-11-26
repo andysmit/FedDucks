@@ -1,11 +1,8 @@
 import falcon
 
-from .api import Resource, DataPage
+from .api import DataPage
 
 api = application = falcon.API()
-
-images = Resource()
-api.add_route('/images', images)
 
 data = DataPage()
 api.add_route('/data', data)

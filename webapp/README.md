@@ -1,7 +1,11 @@
 # Before Starting the project
 
+Install CORS extension on your favourite web browser.
+
 `sudo apt-get install nodejs npm`
+
 `npm install`
+
 
 # Getting Started with Create React App
 

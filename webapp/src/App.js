@@ -1,9 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 import {Container, Row, Col, Table, Form} from 'react-bootstrap';
-const API_SERVER = 'http://localhost:8000/data'
-
 
 class App extends Component {
 	constructor(props) {
@@ -19,14 +16,12 @@ class App extends Component {
     		this.handleInputChange = this.handleInputChange.bind(this);
     		this.handleSubmit = this.handleSubmit.bind(this);
 		this.getDucks = this.getDucks.bind(this)
-		this.showDucks = this.showDucks.bind(this)
   	}
 
         componentDidMount(){
 		this.getDucks();
 	}
 	getDucks() {
-		var dateg = []
                 var myHeaders = new Headers();
                 myHeaders.append('Content-Type', 'application/json')
                 var requestOptions = {
@@ -43,9 +38,6 @@ class App extends Component {
 		
 		
 	}
-	showDucks() {	
-		      console.log(this.state.ducks)
-	}
   	handleInputChange(event) {
     		const target = event.target;
     		const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -57,13 +49,12 @@ class App extends Component {
   	}
 
   	handleSubmit(event) {
-    		alert('Sent' + this.state.time + this.state.food);
+    		alert('Duck data sent!');
     		event.preventDefault();
 		var myHeaders = new Headers();
     		myHeaders.append('Content-Type', 'application/json')
     		var requestOptions = {
 			method: 'POST',
-			mode: 'no-cors',
 			headers: myHeaders,
 			body: JSON.stringify({
 				'time': this.state.time,
@@ -73,13 +64,8 @@ class App extends Component {
 				'amount': this.state.amount
 			})
     		}	
-	 	console.log(requestOptions)
     		fetch("http://localhost:8000/data", requestOptions)
 	    		.then(response => response.json())
-	    		.then((json) => {
-				console.log(json)
-		    		return json;
-	    		})
 	    		.catch(error => console.log('error', error));
   	}
 
@@ -166,7 +152,7 @@ class App extends Component {
 				return (
 				<tr>
 					<th>{data.id}</th>
-					<th>{data.time}</th>
+					<th>{data.time}:00</th>
 					<th>{data.food}</th>
 					<th>{data.location}</th>
 					<th>{data.number}</th>

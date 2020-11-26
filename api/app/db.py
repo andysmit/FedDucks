@@ -21,9 +21,6 @@ def drop_table():
 
 @db_session()
 def get_all_ducks():
-    #test = pd.read_sql(Duck.select())
-    #test2 = test.to_json()
-    #print(test2)
     ducks = list(Duck.select())
     data=[]
     for duck in ducks:
