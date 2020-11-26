@@ -85,84 +85,85 @@ class App extends Component {
 
   	render() {
     		return (
-    <Container>
+<Container>
 	<Row>
-	<Col md={{span:4, offset:4 }}>
-			  <h1>Enter Duck Data</h1>
-			</Col>
+		<Col md={{span:4, offset:4 }}>
+			<h1>Enter Duck Data</h1>
+		</Col>
 	</Row>
-	
+
 	<Row>
-       <Form onSubmit={this.handleSubmit}>
-        <Form.Label>
-            Time you fed the duck(in military time by hour):
-            <input
-            name="time"
-            type="number"
-            checked={this.state.time}
-            onChange={this.handleInputChange} />
-        </Form.Label>
-       	<br />
-        <Form.Label>
-          Type of the food you fed the duck with:
-          <input
-            name="food"
-            type="string"
-            value={this.state.food}
-            onChange={this.handleInputChange} />
-        </Form.Label>
-        <br />
-        <Form.Label>
-          Location of the duck:
-          <input
-            name="location"
-            type="string"
-            value={this.state.location}
-            onChange={this.handleInputChange} />
-        </Form.Label>
-        <br />
-        <Form.Label>
-          Number of the fed ducks:
-          <input
-            name="number"
-            type="number"
-            value={this.state.number}
-            onChange={this.handleInputChange} />
-        </Form.Label>
-        <br />
-        <Form.Label>
-          Amount of food you fed(in kg):
-          <input
-            name="amount"
-            type="number"
-	    step="0.1"
-            value={this.state.amount}
-            onChange={this.handleInputChange} />
-        </Form.Label>
-        <input type="submit" value="Submit" />
-      </Form>
+		<Form onSubmit={this.handleSubmit}>
+			<Form.Label>
+				Time you fed the duck(in military time by hour):
+				<input
+				name="time"
+				type="number"
+				checked={this.state.time}
+				onChange={this.handleInputChange} />
+			</Form.Label>
+			<br />
+			<Form.Label>
+			  Type of the food you fed the duck with:
+			  <input
+				name="food"
+				type="string"
+				value={this.state.food}
+				onChange={this.handleInputChange} />
+			</Form.Label>
+			<br />
+			<Form.Label>
+			  Location of the duck:
+			  <input
+				name="location"
+				type="string"
+				value={this.state.location}
+				onChange={this.handleInputChange} />
+			</Form.Label>
+			<br />
+			<Form.Label>
+			  Number of the fed ducks:
+			  <input
+				name="number"
+				type="number"
+				value={this.state.number}
+				onChange={this.handleInputChange} />
+			</Form.Label>
+			<br />
+			<Form.Label>
+			  Amount of food you fed(in kg):
+			  <input
+				name="amount"
+				type="number"
+				step="0.1"
+				value={this.state.amount}
+				onChange={this.handleInputChange} />
+			</Form.Label>
+			<input type="submit" value="Submit" />
+		</Form>
 	</Row>
 
 	<Row>
 		<Col md={{span:4, offset:4 }}>
-      		<h1>Duck Data</h1>
+			<h1>Duck Data</h1>
 		</Col>
-	 </Row>
-	
+	</Row>
+
 	<Row>
-         <Table striped bordered hover>
-		<thead>
-	   <tr>
-	     <th>id</th>
-	     <th>Time</th>
-	     <th>Food Type</th>
-	     <th>Location</th>
-	     <th>Number of Ducks</th>
-	     <th>Amount of food</th> 
-	   </tr> </thead>
-		<tbody>
-		{this.state.ducks.map((data, key) => {
-			return (
+		<Table striped bordered hover>
+			<thead>
+				<tr>
+				 <th>id</th>
+				 <th>Time</th>
+				 <th>Food Type</th>
+				 <th>Location</th>
+				 <th>Number of Ducks</th>
+				 <th>Amount of food</th>
+				</tr> 
+		   </thead>
+			<tbody>
+			{this.state.ducks.map((data, key) => {
+				return (
 				<tr>
 					<th>{data.id}</th>
 					<th>{data.time}</th>
@@ -171,13 +172,13 @@ class App extends Component {
 					<th>{data.number}</th>
 					<th>{data.amount}</th>
 				</tr>
-			)
-		})}
-		</tbody>
-	 </Table>
+				)
+			})}
+			</tbody>
+		</Table>
 	</Row>
-    </Container>
-    );
+</Container>
+		);
   }
 }
 
