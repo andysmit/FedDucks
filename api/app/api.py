@@ -13,14 +13,19 @@ class Resource(object):
 
 class DataPage(object):
     def on_post(self, req, resp):
-        time = req.get_param('time')
-        food = req.get_param('food')
-        location = req.get_param('location')
-        number = req.get_param('number')
-        amount = req.get_param('amount')
+        raw_json = json.load(req.bounded_stream)
+        time = raw_json['time']
+        food = raw_json['food']
+        location = raw_json['location']
+        number = raw_json['number']
+        amount = raw_json['amount']
+        #location = req.get_param('location')
+        #number = req.get_param('number')
+        #amount = req.get_param('amount')
         addDuck = db.add_duck(time, food, location, number, amount)
         if addDuck == True:
             resp.status = falcon.HTTP_200
+            
         else:
             resp.status = falcon.HTTP_401
 
