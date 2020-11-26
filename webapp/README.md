@@ -1,3 +1,8 @@
+# Before Starting the project
+
+`sudo apt-get install nodejs npm`
+`npm install`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

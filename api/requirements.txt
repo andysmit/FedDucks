@@ -2,3 +2,4 @@ falcon==2.0.0
 gunicorn==20.0.4
 psycopg2-binary==2.8.6
 pony==0.7.14
+pandas==1.1.4
